@@ -1,10 +1,16 @@
 <script lang="ts">
 	export let name: string;
+  function wasmGreet() {
+    import('../Cargo.toml').then((wasm) => wasm.default()).then((exports) => {
+      exports.greet('PPLINK');
+    })
+  }
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <button on:click={wasmGreet}>Greet</button>
 </main>
 
 <style>
